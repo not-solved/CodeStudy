@@ -1,0 +1,27 @@
+#include <string>
+#include <vector>
+using namespace std;
+
+vector<int> solution(vector<vector<int>> arr) {
+    vector<vector<int>> map = arr;
+    vector<int> answer(2);
+    for(int i = 0; i < arr.size(); i++)
+        for(int j = 0; j < arr.size(); j++)
+            answer[arr[i][j]]++;
+    int size = 2;
+    
+    while(size <= arr.size()) {
+        for(int i = 0; i < arr.size(); i += size) {
+            for(int j = 0; j < arr.size(); j += size) {
+                if(map[i][j] == map[i + size/2][j] &&
+                   map[i][j] == map[i][j + size/2] &&
+                   map[i][j] == map[i + size/2][j + size/2])
+                    answer[map[i][j]] -= 3;
+                else
+                    map[i][j] = 2;
+            }
+        }
+        size *= 2;
+    }
+    return answer;
+}

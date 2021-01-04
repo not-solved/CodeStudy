@@ -1,0 +1,12 @@
+#include <string>
+#include <vector>
+using namespace std;
+
+int solution(int n) {
+    int tri = 0, pow = 3;
+    while(n > 0) {
+        tri = tri*3 + n%3;
+        n /= 3;
+    }
+    return tri;
+}
